@@ -4,14 +4,28 @@ from django.contrib.auth import login, logout, authenticate
 from django.shortcuts import render, redirect, reverse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
-from bugtracker.forms import AddTicketForm, LoginForm
+from bugtracker.forms import AddTicketForm, LoginForm, AddUserForm
 from bugtracker.models import Ticket, MyUser
 
 # Create your views here.
-@login_required
+# @login_required
 def home(request):
     return render(request, 'home.html',
                   {'tickets': Ticket.objects.all()})
+
+# @login_required
+def add_user(request):
+    if request.method == 'POST':
+        form = AddUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=raw_password)
+            login(request, user)
+            return redirect('homepage')
+    else:
+        form = AddUserForm()
+    return render(request, 'generic_form.html', {'form': form})
 
 def loginview(request):
     if request.method == "POST":
