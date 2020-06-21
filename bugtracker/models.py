@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from datetime import datetime
 
 from django.contrib.auth.models import AbstractUser
 
@@ -13,7 +14,8 @@ class Ticket(models.Model):
     filed_by = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     # assigned_to = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     # completed_by = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-    time_submitted = models.DateTimeField()
+    # https://stackoverflow.com/questions/2771676/django-datetime-issues-default-datetime-now
+    time_submitted = models.DateTimeField(default=datetime.now)
 
     new = 'n'
     inprog = 'p'

@@ -5,8 +5,6 @@ from bugtracker.models import Ticket, MyUser
 
 AddTicketForm = modelform_factory(Ticket, exclude=[])
 
-
-
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=50)
     password = forms.CharField(widget=forms.PasswordInput)
