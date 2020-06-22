@@ -11,9 +11,10 @@ class MyUser(AbstractUser):
 class Ticket(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
-    filed_by = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-    # assigned_to = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-    # completed_by = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    filed_by = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='filed_by')
+    assigned_to = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='assigned_to', null=True,blank=True, default=None)
+    completed_by = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='completed_by', blank=True, default=None)
+
     # https://stackoverflow.com/questions/2771676/django-datetime-issues-default-datetime-now
     time_submitted = models.DateTimeField(default=datetime.now)
 

@@ -8,7 +8,9 @@
     <h2>Ticket Status:  {{ticket.get_ticket_status_display}}</h2>
     <h3>Description</h3>
     <p> {{ticket.description}}</p>
-    <p>Submitted by:  {{ticket.filed_by}}</p>
+    <p>Submitted by: <a href="{% url 'user' ticket.filed_by.id %}"> {{ticket.filed_by}}</a></p>
+    <p>Assigned To:  {{ticket.assigned_to}}</p>
+    <p>Completed By:  {{ticket.completed_by}}</p>
     <p>Time Submitted: {{ticket.time_submitted}}</p>
 
     

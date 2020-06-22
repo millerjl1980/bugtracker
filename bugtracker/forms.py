@@ -3,7 +3,9 @@ from django.forms import modelform_factory
 from django.contrib.auth.forms import UserCreationForm
 from bugtracker.models import Ticket, MyUser
 
-AddTicketForm = modelform_factory(Ticket, exclude=[])
+AddTicketForm = modelform_factory(Ticket, exclude=['assigned_to', 'completed_by'])
+
+EditTicketForm = modelform_factory(Ticket, exclude=['filed_by'])
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=50)
