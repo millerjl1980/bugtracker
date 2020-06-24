@@ -13,10 +13,12 @@ def home(request):
     n_tickets = Ticket.objects.filter(ticket_status='n')
     ip_tickets = Ticket.objects.filter(ticket_status='p')
     d_tickets = Ticket.objects.filter(ticket_status='d')
+    na_tickets = Ticket.objects.filter(ticket_status='na')
     return render(request, 'home.html',
                   {'n_tickets': n_tickets,
                   'ip_tickets': ip_tickets,
-                  'd_tickets': d_tickets})
+                  'd_tickets': d_tickets,
+                  'na_tickets': na_tickets})
 
 @login_required
 def ticket(request, id):
