@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Bug Tracker{% endblock %}
+
+
+{% block content %}
+
+    <h1>Welcome to the Bug Tracker!</h1>
+    
+    <h3>New Tickets:</h3>
+    <ul>
+        {% for ticket in n_tickets %}
+            <li>
+                <a href="{% url 'ticket' ticket.id %}">
+                    {{ ticket }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>In-Progress Tickets:</h3>
+    <ul>
+        {% for ticket in ip_tickets %}
+            <li>
+                <a href="{% url 'ticket' ticket.id %}">
+                    {{ ticket }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Completed:</h3>
+    <ul>
+        {% for ticket in d_tickets %}
+            <li>
+                <a href="{% url 'ticket' ticket.id %}">
+                    {{ ticket }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Invalid Tickets:</h3>
+    <ul>
+        {% for ticket in na_tickets %}
+            <li>
+                <a href="{% url 'ticket' ticket.id %}">
+                    {{ ticket }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <br>
+    <p>You are currently logged in: {{user.is_authenticated}}</p>
+    <br>
+    <a href="{% url 'add_ticket' %}">
+        Add New Ticket
+    </a>
+    <br>
+    <a href="{% url 'add_user' %}">
+        Setup New User
+    </a>
+    <br>
+    <a href="{% url 'user' user.id %}">
+        My Profile
+    </a>
+    <br>
+    <a href="{% url 'login' %}">
+        Login
+     </a>
+    <br>
+    <a href="{% url 'logout' %}">
+        Logout
+     </a>
+     
+
+{% endblock %}

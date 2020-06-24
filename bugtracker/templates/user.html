@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}User Info{% endblock %}
+
+{% block content %}
+
+    <h1>{{user}}</h1>
+
+    <h3>Currently Assinged:</h3>
+    <ul>
+        {% for ticket in a_tickets %}
+            <li>
+                <a href="{% url 'ticket' ticket.id %}">
+                    {{ ticket }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Tickets Submitted:</h3>
+    <ul>
+        {% for ticket in f_tickets %}
+            <li>
+                <a href="{% url 'ticket' ticket.id %}">
+                    {{ ticket }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Completed:</h3>
+    <ul>
+        {% for ticket in c_tickets %}
+            <li>
+                <a href="{% url 'ticket' ticket.id %}">
+                    {{ ticket }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'home' %}">Back Home</a>
+    
+{% endblock %}
